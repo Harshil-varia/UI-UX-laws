@@ -1,0 +1,3 @@
+# Codex: run this skill only when it is invoked by name ($laws-of-ux).
+policy:
+  allow_implicit_invocation: false

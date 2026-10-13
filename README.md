@@ -9,6 +9,7 @@ It is opt-in. Nothing here applies to a project unless someone asks for it.
 | Path | What it is |
 |---|---|
 | `SKILL.md` | The skill entry point: ground rules and five modes (`build`, `audit`, `rubric`, `explain`, `ethics`). |
+| `agents/openai.yaml` | Tells Codex to run the skill only when it is named. |
 | `reference/laws.md` | All 30 laws listed on lawsofux.com as of 2026-10-13. For each: the rule in a sentence, what it means when building a web UI, violation signs, whether it can be checked from code, the running app or only with users, and sources. Also: evidence strength, conflicts between laws, overlap with Octalysis core drives. |
 | `book/chapter-notes.md` | Chapter-by-chapter notes on Jon Yablonski's *Laws of UX*, first edition (2020), with page references. |
 | `method/principle-law-rule.md` | The book's method for turning laws into a project standard: principle → law → rule. Includes a rubric layout. |
@@ -48,10 +49,17 @@ ln -s ~/Downloads/UI-UX-laws ~/.claude/skills/laws-of-ux
 
 Moving the repo breaks the link. Re-run the command with the new path.
 
-Codex: not yet verified. See the open item below.
+### Codex
+
+Codex reads personal skills from `~/.agents/skills/<name>/SKILL.md` and repo skills from `.agents/skills/`. It does not read `.claude/skills/`.
+
+```bash
+ln -s ~/Downloads/UI-UX-laws ~/.agents/skills/laws-of-ux
+```
+
+`agents/openai.yaml` sets `allow_implicit_invocation: false`, so Codex runs the skill only when it is named: `$laws-of-ux audit <screens>`.
 
 ## Open items
 
-- Confirm where Codex reads personal skills and whether it has an explicit-invocation-only setting.
 - Second edition of the book not yet read.
 - Nielsen Norman Group articles on the Zeigarnik effect and the serial position effect were not found at a working URL.
